@@ -188,6 +188,44 @@ void testSelectionSort() {
     assert(testSort(mylist));
 }
 
+void testBubbleSort() {
+    List mylist = List();
+    for (int j = 0;j < 100;j++) {
+        mylist.append(rand() % 100 + 1);
+    }
+    bubbleSort(mylist);
+    assert(testSort(mylist));
+}
+
+void testInsertionSort() {
+    List mylist = List();
+    for (int j = 0;j < 100;j++) {
+        mylist.append(rand() % 100 + 1);
+    }
+    mylist = insertionSort(mylist);
+    assert(testSort(mylist));
+}
+
+void testSlice() {
+    List mylist = List();
+    for (int j = 0;j < 100;j++) {
+        mylist.insert(j, j);
+    }
+    List b = slice(mylist, 0, 10);
+    assert(b.getSize() == 10);
+    assert(b[7] == 7);
+}
+
+void testMergeSort() {
+    List mylist = List();
+    for (int j = 0;j < 101;j++) {
+        mylist.append(rand() % 100 + 1);
+    }
+    List mylistTwo = mergeSort(mylist);
+    assert(testSort(mylistTwo));
+}
+
+
 int main(){
 
   //stack tests
@@ -216,6 +254,10 @@ int main(){
   testSortingTrue();
   testGetMinimum();
   testSelectionSort();
+  testBubbleSort();
+  testInsertionSort();
+  testSlice();
+  testMergeSort();
 
   
   return 0;

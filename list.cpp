@@ -30,7 +30,7 @@ class List{
     }
 
     int& getNumPointer(int i) {
-        if (i <= size - 1) {
+        if (i < size) {
             return getNode(i)->num;
         }
     }
@@ -62,13 +62,13 @@ class List{
       node* temp=new node;
       temp->num = y;
       temp->next = NULL;
-      if (x >= size) {
+      if (x >= size-1) {
           append(y);
           delete temp;
           return;
       }
       if(x==0){
-        temp->next = prev;
+        temp->next = head;
         head=temp;
       }else{
           prev = getNode(x - 1);
@@ -96,6 +96,7 @@ class List{
         if (y==0) {
             retme = head->num;
             head = head->next;
+            size--;
             return retme;
         }
         if (y==size-1) {
@@ -109,6 +110,7 @@ class List{
             prev->next = temp->next;
             retme = temp->num;
         }
+        size--;
         return retme;
     }
 
