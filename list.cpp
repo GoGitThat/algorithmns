@@ -13,6 +13,8 @@ class List{
       size=0;
     }
 
+    int& operator[](int i) { return getNumPointer(i); }
+
     void append(int x){
       node* temp = new node;
       temp->num = x;
@@ -27,6 +29,12 @@ class List{
       }
       temp = NULL;
       size++;
+    }
+
+    int& getNumPointer(int i) {
+        if (i < size - 1) {
+            return getNode(i)->num;
+        }
     }
 
     void clear(){
