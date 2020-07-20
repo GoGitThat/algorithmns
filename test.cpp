@@ -1,6 +1,7 @@
 #include "stack.cpp"
 #include <assert.h>
 #include "sorting.cpp"
+#include <stdlib.h>
 
 //Stack tests
 
@@ -148,21 +149,42 @@ void testBracketOverload() {
     assert(mylist[69] == 69420);
 }
 
+//sorting tests
+
 void testSortingFalse() {
     List mylist = List();
-    for (int j = 0;j < 100;j++) {
+    for (int j = 0;j < 10;j++) {
         mylist.insert(j, j);
     }
-    mylist[69] = 69420;
+    mylist[6] = 69420;
     assert(!testSort(mylist));
 }
 
 
 void testSortingTrue() {
     List mylist = List();
+    for (int j = 0;j < 10;j++) {
+        mylist.insert(j, j);
+    }
+    assert(testSort(mylist));
+}
+
+void testGetMinimum() {
+    List mylist = List();
     for (int j = 0;j < 100;j++) {
         mylist.insert(j, j);
     }
+    mylist[0] = 200;
+    mylist[69] = 0;
+    assert(getMinimum(mylist, 0, mylist.getSize()) == 69);
+}
+
+void testSelectionSort() {
+    List mylist = List();
+    for (int j = 0;j < 100;j++) {
+        mylist.append(rand() % 100 + 1);
+    }
+    selectionSort(mylist);
     assert(testSort(mylist));
 }
 
@@ -192,6 +214,8 @@ int main(){
   //sorting tests
   testSortingFalse();
   testSortingTrue();
+  testGetMinimum();
+  testSelectionSort();
 
   
   return 0;

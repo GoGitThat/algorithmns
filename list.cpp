@@ -3,13 +3,12 @@
 using namespace std;
 class List{
   private:
-    node *head, *tail;
+      node* head;
     int size;
 
   public:
     List(){ // constructor
       head=NULL;
-      tail=NULL;
       size=0;
     }
 
@@ -22,17 +21,16 @@ class List{
 
       if(head==NULL){
         head=temp;
-        tail=temp;
       }else{
-        tail->next = temp;
-        tail = temp;
+          node* tempTwo = getNode(size - 1);
+          tempTwo->next = temp;
       }
       temp = NULL;
       size++;
     }
 
     int& getNumPointer(int i) {
-        if (i < size - 1) {
+        if (i <= size - 1) {
             return getNode(i)->num;
         }
     }
@@ -73,11 +71,9 @@ class List{
         temp->next = prev;
         head=temp;
       }else{
-        for (int c = 0;c < x - 1;c++) {
-              prev = prev->next;
-        }
-        temp->next = prev->next;
-        prev->next = temp;
+          prev = getNode(x - 1);
+          temp->next = prev->next;
+          prev->next = temp;
       }
       size++;
     }
@@ -94,53 +90,39 @@ class List{
     }
 
     int pop(int y){
-      node* prev = head;
-      node* temp = head;
-      for(int i=0;i<y-1;i++){
-        prev = prev->next;
-      }
-      if(y==0){
-        temp = prev;
-        head = head->next;
-      }
-      if(y==size-1){
-        temp = tail;
-        tail=prev;
-      }
-      if(y<size-1 && y!=0){
-        temp = prev->next;
-        prev->next = temp->next;
-      }
-      if(y>size){
-        return -1;
-      }
-      size--;
-      return temp->num;
+        int retme = -1;
+        node* prev = head;
+        node* temp = head;
+        if (y==0) {
+            retme = head->num;
+            head = head->next;
+            return retme;
+        }
+        if (y==size-1) {
+            prev = getNode(y - 1);
+            retme = prev->next->num;
+            prev->next = NULL;
+        }
+        else {
+            prev = getNode(y - 1);
+            temp = getNode(y);
+            prev->next = temp->next;
+            retme = temp->num;
+        }
+        return retme;
     }
 
     int remove(int y){
-      node* prev = head;
+        int count = 0;
       node* curr = head;
-      while(curr!=tail){
+      while(count<size){
         if(curr->num==y){
           break;
         }
-        prev=curr;
-        curr=curr->next;
+        curr = curr->next;
+        count++;
       }
-      if(curr==NULL){
-        return -1;
-      }
-      if(curr==tail){
-        tail=prev;
-        return curr->num;
-      }
-      if(curr==head){
-        head = head->next;
-        return curr->num;
-      }
-      prev->next = curr->next;
-      return curr->num;
+      return pop(count);
     }
 
     node* getNode(int x) {
@@ -158,7 +140,4 @@ class List{
         nodeX->num = nodeY->num;
         nodeY->num = z;
     }
-
-
-
 };
