@@ -1,5 +1,5 @@
 test: test.o
-	g++ -o test test.o
+	g++ -o -fsyntax-only test test.o
 test.o: stack.o list.o
 	g++ -c test.cpp
 list.o: list.cpp structs.h
