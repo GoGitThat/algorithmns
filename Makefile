@@ -1,6 +1,6 @@
-all: test ;
+all: test;
 clean:
-    rm -f test test.o
+	rm -f test test.o
 test: test.o
 	g++ -o test test.o
 test.o: stack.o list.o sorting.o
