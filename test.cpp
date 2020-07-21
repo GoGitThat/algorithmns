@@ -225,15 +225,6 @@ void testMergeSort() {
     assert(testSort(mylistTwo));
 }
 
-void testQuickSort() {
-    List mylist = List();
-    for (int j = 0;j <100;j++) {
-        mylist.append(rand() % 100 + 1);
-    }
-    quickSort(mylist, 0, mylist.getSize());
-    assert(testSort(mylist));
-}
-
 
 int main(){
 
@@ -267,7 +258,6 @@ int main(){
   testInsertionSort();
   testSlice();
   testMergeSort();
-  testQuickSort();
 
   
   return 0;

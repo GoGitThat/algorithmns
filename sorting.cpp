@@ -95,29 +95,3 @@ inline List mergeSort(List a) {
 
     return merge(a1, a2);
 }
-
-inline void quickSort(List a, int left, int right) {
-    int b = left;
-    int c = right;
-    int pivot = a[(left + right) / 2];
-
-    while (b <= c) {
-        while (a[b] < pivot) {
-            b++;
-        }
-        while (a[c] > pivot) {
-            c--;
-        }
-        if (b <= c) {
-            a.swap(b, c);
-            b++;
-            c--;
-        }
-    }
-    if (left < c) {
-        quickSort(a, left, c);
-    }
-    if (b < right) {
-        quickSort(a, b, right);
-    }
-}
