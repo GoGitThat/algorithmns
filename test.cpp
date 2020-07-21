@@ -227,8 +227,8 @@ void testMergeSort() {
 
 void testQuickSort() {
     List mylist = List();
-    for (int j = 0;j <100;j++) {
-        mylist.append(rand() % 100 + 1);
+    for (int j = 0;j <10;j++) {
+        mylist.append(rand() % 10 + 1);
     }
     quickSort(mylist, 0, mylist.getSize());
     assert(testSort(mylist));
