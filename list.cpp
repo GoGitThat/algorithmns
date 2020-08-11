@@ -3,7 +3,7 @@
 using namespace std;
 class List{
   private:
-      node* head;
+    node* head;
     int size;
 
   public:

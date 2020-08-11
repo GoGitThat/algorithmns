@@ -9,6 +9,12 @@ int num;
 node *next;
 };
 
+struct tnode
+{
+	int num;
+	node* left;
+	node* right;
+};
 
 
 #endif //STRUCTS_H
